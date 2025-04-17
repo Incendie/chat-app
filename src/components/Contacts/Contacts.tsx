@@ -1,6 +1,12 @@
 import { useNavigate } from "react-router";
 import { useGetPhoneNumbers } from "../../hooks/useGetPhoneNumbers";
-import { ContactContainer, Name, Number } from "./styles";
+import {
+  ContactContainer,
+  Container,
+  Name,
+  Number,
+  StyledHeader,
+} from "./styles";
 
 export const Contacts = () => {
   const navigate = useNavigate();
@@ -14,13 +20,17 @@ export const Contacts = () => {
   };
 
   return (
-    <section>
+    <Container>
+      <StyledHeader>Contacts</StyledHeader>
       {data.map((contact: any) => (
-        <ContactContainer onClick={() => onContactClick(contact.id)}>
+        <ContactContainer
+          key={contact.id}
+          onClick={() => onContactClick(contact.id)}
+        >
           <Name>{contact.name}</Name>
           <Number>{contact.number}</Number>
         </ContactContainer>
       ))}
-    </section>
+    </Container>
   );
 };

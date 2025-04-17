@@ -1,3 +1,9 @@
+import { Container, StyledHeader } from "./styles";
+
 export const SideBar = () => {
-  return <nav>Nav</nav>;
+  return (
+    <Container>
+      <StyledHeader>Nav</StyledHeader>
+    </Container>
+  );
 };

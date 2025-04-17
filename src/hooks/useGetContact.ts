@@ -1,12 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import { OpenPhoneApi } from "../api/config";
 
-export const useGetPhoneNumbers = () => {
+
+export const useGetContact = (id?: string) => {
   return useQuery({
-    queryKey: ["phoneList"],
+    queryKey: ["contact", id],
     queryFn: async () => {
+      if (!id) return null;
+
       try {
-        const { data } = await OpenPhoneApi.get("/phone-numbers");
+        const { data } = await OpenPhoneApi.get("/contacts", {
+          params: {
+            id
+          }
+        });
+
+        console.log({data});
 
         return data.data;
       } catch (error) {

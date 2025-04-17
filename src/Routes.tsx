@@ -4,7 +4,7 @@ import { Main } from "./Main";
 export const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Main />} />
+      <Route path="/:id" element={<Main />} />
     </Routes>
   );
 };
