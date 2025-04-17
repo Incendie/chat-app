@@ -13,4 +13,5 @@ export const StyledHeader = styled.header`
   font-weight: 700;
   background: ${({ theme }) => theme.darkgreen};
   padding: 12px 0;
+  border-bottom: 1px solid black;
 `;

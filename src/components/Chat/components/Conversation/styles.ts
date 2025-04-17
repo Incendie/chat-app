@@ -10,24 +10,25 @@ export const Container = styled.div`
   background: white;
   display: flex;
   flex-direction: column;
-  padding: 12px;
   height: 100%;
   width: 100%;
   border: 1px solid transparent;
   border-radius: 6px;
-  background:  ${({ theme }) =>  theme.lightgreen};
+  background: ${({ theme }) => theme.lightgreen};
 `;
 
 export const Back = styled.div`
   display: inline-block;
   align-self: flex-start;
   font-size: 1rem;
+  padding: 12px;
 `;
 
 export const ConversationContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  padding: 12px;
 `;
 
 interface IName {
@@ -45,6 +46,9 @@ export const MessageContainer = styled.div<IName>`
   width: max-content;
   align-items: flex-start;
   align-self: ${({ isYou }) => (isYou ? "flex-end" : "flex-start")};
+  background: ${({ isYou, theme }) => (isYou ? theme.darkgreen : theme.green)};
+  border-radius: 12px;
+  box-shadow: 3px 3px ${({ theme }) => theme.shadowgreen};
 `;
 
 export const Name = styled.div`
@@ -53,4 +57,33 @@ export const Name = styled.div`
 
 export const Message = styled.div``;
 
-export const StyledFooter = styled.footer``;
+export const StyledFooter = styled.footer`
+padding: 6px;`;
+
+export const StyledForm = styled.form`
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+`;
+
+export const StyledInput = styled.div`
+  flex-grow: 1;
+
+  input {
+    width: 100%;
+    padding: 9px;
+    font-size: 1rem;
+    border-radius:6px;
+    box-shadow: none;
+    border: 1px solid black;
+  }
+`;
+
+export const StyledButton = styled.button`
+  background: ${({ theme }) => theme.darkgreen};
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 6px;
+  width: 90px;
+  cursor: pointer;
+`;

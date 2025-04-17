@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useListMessages } from "../../../../hooks/useListMessages";
 import {
   Back,
@@ -7,7 +7,10 @@ import {
   Message,
   MessageContainer,
   Name,
+  StyledButton,
   StyledFooter,
+  StyledForm,
+  StyledInput,
 } from "./styles";
 import { useSendMessage } from "../../../../hooks/useSendMessage";
 import { StyledHeader } from "../../../../styles";
@@ -15,11 +18,13 @@ import { StyledHeader } from "../../../../styles";
 interface IConversation {
   phoneNumberId: string;
   participants: string[];
+  setActiveChat: Dispatch<SetStateAction<any>>;
 }
 
 export const Conversation = ({
   phoneNumberId,
   participants,
+  setActiveChat,
 }: IConversation) => {
   const { data, fetchNextPage } = useListMessages({
     phoneNumberId,
@@ -63,7 +68,7 @@ export const Conversation = ({
   return (
     <Container>
       <StyledHeader>{participants.join(", ")}</StyledHeader>
-      <Back>← Back to list</Back>
+      <Back onClick={() => setActiveChat(null)}>← Back to list</Back>
       <ConversationContainer>
         {data.pages[page - 1].data.map((message: any) => (
           <MessageContainer
@@ -81,12 +86,14 @@ export const Conversation = ({
         Next
       </button>
       <StyledFooter>
-        <form onSubmit={onSubmit}>
-          <input name="content" type="text" />
-          <button name="submitButton" type="submit">
-            Send message
-          </button>
-        </form>
+        <StyledForm onSubmit={onSubmit}>
+          <StyledInput>
+            <input name="content" type="text" />
+          </StyledInput>
+          <StyledButton name="submitButton" type="submit">
+            Send
+          </StyledButton>
+        </StyledForm>
       </StyledFooter>
     </Container>
   );

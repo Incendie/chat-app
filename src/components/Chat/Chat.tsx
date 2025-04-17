@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useGetContact } from "../../hooks/useGetContact";
+import { useGetContacts } from "../../hooks/useGetContacts";
 import { useGetConversations } from "../../hooks/useGetConversations";
 import { ChatParticipants, Container, ParticipantsContainer } from "./styles";
 import { useState } from "react";
@@ -10,13 +10,9 @@ export const Chat = () => {
   const params = useParams();
   const { data, fetchNextPage } = useGetConversations();
   const [page, setPage] = useState(1);
-  const [activeChat, setActiveChat] = useState({
-    id: null,
-    phoneNumberId: null,
-    participants: [],
-  });
+  const [activeChat, setActiveChat] = useState<any>();
 
-  const contact = useGetContact(params.id);
+  const contact = useGetContacts(params.id);
 
   if (!data) return <div>Loading Conversations...</div>;
 
@@ -25,7 +21,6 @@ export const Chat = () => {
     fetchNextPage();
   };
 
-  console.log({ data });
   return (
     <Container>
       <StyledHeader>Chat</StyledHeader>
@@ -42,12 +37,13 @@ export const Chat = () => {
           </ChatParticipants>
         ))}
       </ParticipantsContainer>
-      {!!activeChat.id &&
-        !!activeChat.phoneNumberId &&
-        !!activeChat.participants && (
+      {!!activeChat?.id &&
+        !!activeChat?.phoneNumberId &&
+        !!activeChat?.participants && (
           <Conversation
             phoneNumberId={activeChat.phoneNumberId}
             participants={activeChat.participants}
+            setActiveChat={setActiveChat}
           />
         )}
     </Container>

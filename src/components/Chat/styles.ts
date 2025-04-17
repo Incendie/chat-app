@@ -21,6 +21,6 @@ padding: 12px;
   cursor: pointer;
   
   &:hover {
-    background: ${({ theme }) =>  theme.lightblue};
+    background: ${({ theme }) =>  theme.darkgreen};
   }
 `;

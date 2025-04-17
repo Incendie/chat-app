@@ -6,5 +6,4 @@ export const theme: DefaultTheme = {
   darkgreen: '#9CC69B',
   lightblue: '#79B4A9',
   shadowgreen: '#676F54',
-  black: '#000000'
 }

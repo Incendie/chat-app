@@ -17,11 +17,10 @@ export const ContactsContainer = styled.div`
 
 export const ContactContainer = styled.li`
   cursor: pointer;
-  margin: 12px 0;
-  padding: 12px 0;
+  padding: 24px 0;
 
   &:hover {
-    background: ${({ theme }) =>  theme.lightblue};
+    background: ${({ theme }) =>  theme.darkgreen};
   }
 `;
 
