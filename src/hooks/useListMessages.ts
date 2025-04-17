@@ -8,10 +8,13 @@ interface IListMessages {
 
 export const useListMessages = ({ phoneNumberId, participants}: IListMessages ) => {
   return useInfiniteQuery({
-    queryKey: ["messagesList"],
+    queryKey: ["messagesList", phoneNumberId, participants],
     queryFn: async ({ pageParam }) => {
+      if (!phoneNumberId && !participants) return null;
+
+      console.log({phoneNumberId, participants});
       try {
-        console.log(pageParam);
+
         const { data } = await OpenPhoneApi.get("/messages", {params: {
           pageToken: pageParam,
           phoneNumberId,
@@ -26,7 +29,7 @@ export const useListMessages = ({ phoneNumberId, participants}: IListMessages ) 
       }
     },
     initialPageParam: null,
-    enabled: true,
+    enabled: !!phoneNumberId && !!participants,
     getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => lastPage.nextPageToken,
     getPreviousPageParam: (firstPage, allPages) => firstPage.prevCursor,
   });

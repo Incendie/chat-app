@@ -6,7 +6,6 @@ export const useGetConversations = () => {
     queryKey: ["conversastionsList"],
     queryFn: async ({ pageParam }) => {
       try {
-        console.log(pageParam);
         const { data } = await OpenPhoneApi.get("/conversations", {params: {
           pageToken: pageParam
         }

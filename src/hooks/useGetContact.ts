@@ -15,8 +15,6 @@ export const useGetContact = (id?: string) => {
           }
         });
 
-        console.log({data});
-
         return data.data;
       } catch (error) {
 
