@@ -1,4 +1,5 @@
-import { Container, StyledHeader } from "./styles";
+import { StyledHeader } from "../../styles";
+import { Container } from "./styles";
 
 export const SideBar = () => {
   return (

@@ -2,11 +2,12 @@ import { useNavigate } from "react-router";
 import { useGetPhoneNumbers } from "../../hooks/useGetPhoneNumbers";
 import {
   ContactContainer,
+  ContactsContainer,
   Container,
   Name,
   Number,
-  StyledHeader,
 } from "./styles";
+import { StyledHeader } from "../../styles";
 
 export const Contacts = () => {
   const navigate = useNavigate();
@@ -22,15 +23,17 @@ export const Contacts = () => {
   return (
     <Container>
       <StyledHeader>Contacts</StyledHeader>
-      {data.map((contact: any) => (
-        <ContactContainer
-          key={contact.id}
-          onClick={() => onContactClick(contact.id)}
-        >
-          <Name>{contact.name}</Name>
-          <Number>{contact.number}</Number>
-        </ContactContainer>
-      ))}
+      <ContactsContainer>
+        {data.map((contact: any) => (
+          <ContactContainer
+            key={contact.id}
+            onClick={() => onContactClick(contact.id)}
+          >
+            <Name>{contact.name}</Name>
+            <Number>{contact.number}</Number>
+          </ContactContainer>
+        ))}
+      </ContactsContainer>
     </Container>
   );
 };

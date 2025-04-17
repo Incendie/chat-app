@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useListMessages } from "../../../../hooks/useListMessages";
 import {
+  Back,
   Container,
+  ConversationContainer,
   Message,
   MessageContainer,
   Name,
-  StyledHeader,
+  StyledFooter,
 } from "./styles";
 import { useSendMessage } from "../../../../hooks/useSendMessage";
+import { StyledHeader } from "../../../../styles";
 
 interface IConversation {
   phoneNumberId: string;
@@ -40,7 +43,7 @@ export const Conversation = ({
     const userId = outgoingMessage.userId;
 
     onSendMessage.mutateAsync({
-      content: e.target.textContent,
+      content: e.target.content,
       from,
       to,
       userId,
@@ -60,23 +63,31 @@ export const Conversation = ({
   return (
     <Container>
       <StyledHeader>{participants.join(", ")}</StyledHeader>
-      {data.pages[page - 1].data.map((message: any) => (
-        <MessageContainer key={`${message.phoneNumberId}-${message.id}`}>
-          <Name>{message.direction === "incoming" ? message.from : "You"}</Name>
-          <Message>{message.text}</Message>
-        </MessageContainer>
-      ))}
+      <Back>← Back to list</Back>
+      <ConversationContainer>
+        {data.pages[page - 1].data.map((message: any) => (
+          <MessageContainer
+            key={`${message.phoneNumberId}-${message.id}`}
+            isYou={message.direction !== "incoming"}
+          >
+            <Name>
+              {message.direction === "incoming" ? message.from : "You"}
+            </Name>
+            <Message>{message.text}</Message>
+          </MessageContainer>
+        ))}
+      </ConversationContainer>
       <button type="button" onClick={getNextPageOfChats}>
         Next
       </button>
-      <footer>
+      <StyledFooter>
         <form onSubmit={onSubmit}>
           <input name="content" type="text" />
           <button name="submitButton" type="submit">
             Send message
           </button>
         </form>
-      </footer>
+      </StyledFooter>
     </Container>
   );
 };
