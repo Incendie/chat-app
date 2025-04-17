@@ -1,0 +1,1 @@
+export const apiKey = 'tjrEDZA2ZxIbxRqWcF6blW1D3BO0kCQj'; // unsafe
