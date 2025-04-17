@@ -11,9 +11,11 @@ import {
   StyledFooter,
   StyledForm,
   StyledInput,
+  Timestamp,
 } from "./styles";
 import { useSendMessage } from "../../../../hooks/useSendMessage";
 import { StyledHeader } from "../../../../styles";
+import { format } from "date-fns";
 
 interface IConversation {
   phoneNumberId: string;
@@ -75,10 +77,15 @@ export const Conversation = ({
             key={`${message.phoneNumberId}-${message.id}`}
             isYou={message.direction !== "incoming"}
           >
+            <Timestamp>
+              {format(message.createdAt, "EEEE yyyy-MM-dd HH:mm")}
+            </Timestamp>
             <Name>
               {message.direction === "incoming" ? message.from : "You"}
             </Name>
-            <Message>{message.text}</Message>
+            <Message isYou={message.direction !== "incoming"}>
+              {message.text}
+            </Message>
           </MessageContainer>
         ))}
       </ConversationContainer>

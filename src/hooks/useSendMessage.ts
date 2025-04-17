@@ -21,8 +21,7 @@ export const useSendMessage = ( ) => {
 
         return data;
       } catch (error) {
-
-        console.error(`Error fetching phone list \n ${error}`);
+        console.error(`Error sending message \n ${error}`);
       }
     },
   });

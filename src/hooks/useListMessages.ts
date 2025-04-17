@@ -24,8 +24,7 @@ export const useListMessages = ({ phoneNumberId, participants}: IListMessages ) 
 
         return data;
       } catch (error) {
-
-        console.error(`Error fetching phone list \n ${error}`);
+        console.error(`Error fetching messages \n ${error}`);
       }
     },
     initialPageParam: null,

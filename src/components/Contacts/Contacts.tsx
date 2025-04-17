@@ -26,6 +26,7 @@ export const Contacts = () => {
       <ContactsContainer>
         {data.map((contact: any) => (
           <ContactContainer
+            data-testid="contacts"
             key={contact.id}
             onClick={() => onContactClick(contact.id)}
           >

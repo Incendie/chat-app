@@ -40,25 +40,33 @@ export const MessageContainer = styled.div<IName>`
   flex-direction: column;
   gap: 3px;
   margin: 6px 0;
-  padding: 12px;
-  border: 1px solid black;
+
   max-width: 50%;
   width: max-content;
   align-items: flex-start;
   align-self: ${({ isYou }) => (isYou ? "flex-end" : "flex-start")};
-  background: ${({ isYou, theme }) => (isYou ? theme.darkgreen : theme.green)};
-  border-radius: 12px;
-  box-shadow: 3px 3px ${({ theme }) => theme.shadowgreen};
+`;
+
+export const Timestamp = styled.div`
+  font-size: 0.75rem;
+  font-style: italic;
 `;
 
 export const Name = styled.div`
   justify-content: flex-end;
 `;
 
-export const Message = styled.div``;
+export const Message = styled.div<IName>`
+  border: 1px solid black;
+  background: ${({ isYou, theme }) => (isYou ? theme.darkgreen : theme.green)};
+  border-radius: 12px;
+  box-shadow: 3px 3px ${({ theme }) => theme.shadowgreen};
+  padding: 12px;
+`;
 
 export const StyledFooter = styled.footer`
-padding: 6px;`;
+  padding: 6px;
+`;
 
 export const StyledForm = styled.form`
   display: flex;
@@ -73,7 +81,7 @@ export const StyledInput = styled.div`
     width: 100%;
     padding: 9px;
     font-size: 1rem;
-    border-radius:6px;
+    border-radius: 6px;
     box-shadow: none;
     border: 1px solid black;
   }

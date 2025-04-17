@@ -1,10 +1,11 @@
 import { useParams } from "react-router";
-import { useGetContacts } from "../../hooks/useGetContacts";
+
 import { useGetConversations } from "../../hooks/useGetConversations";
 import { ChatParticipants, Container, ParticipantsContainer } from "./styles";
 import { useState } from "react";
 import { Conversation } from "./components/Conversation/Conversation";
 import { StyledHeader } from "../../styles";
+import { useGetContact } from "../../hooks/useGetContact";
 
 export const Chat = () => {
   const params = useParams();
@@ -12,7 +13,7 @@ export const Chat = () => {
   const [page, setPage] = useState(1);
   const [activeChat, setActiveChat] = useState<any>();
 
-  const contact = useGetContacts(params.id);
+  const contact = useGetContact("USMiJCbJzt");
 
   if (!data) return <div>Loading Conversations...</div>;
 

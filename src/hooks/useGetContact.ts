@@ -17,8 +17,7 @@ export const useGetContact = (id?: string) => {
 
         return data.data;
       } catch (error) {
-
-        console.error(`Error fetching phone list \n ${error}`);
+        console.error(`Error fetching contacts \n ${error}`);
       }
     },
     enabled: true,

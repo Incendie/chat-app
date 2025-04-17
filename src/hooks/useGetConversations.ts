@@ -13,8 +13,7 @@ export const useGetConversations = () => {
 
         return data;
       } catch (error) {
-
-        console.error(`Error fetching phone list \n ${error}`);
+        console.error(`Error fetching conversations list \n ${error}`);
       }
     },
     initialPageParam: null,
